@@ -43,20 +43,20 @@ type PolicyObjectSecurityObjectGroup struct {
 }
 
 type PolicyObjectSecurityObjectGroupEntries struct {
-	Ipv4Prefixes          types.Set    `tfsdk:"ipv4_prefixes"`
-	Ipv4PrefixesVariable  types.String `tfsdk:"ipv4_prefixes_variable"`
-	Ipv6Prefixes          types.Set    `tfsdk:"ipv6_prefixes"`
-	Ipv6PrefixesVariable  types.String `tfsdk:"ipv6_prefixes_variable"`
-	Fqdns                 types.Set    `tfsdk:"fqdns"`
-	FqdnsVariable         types.String `tfsdk:"fqdns_variable"`
-	GeoLocations          types.Set    `tfsdk:"geo_locations"`
-	Ports                 types.Set    `tfsdk:"ports"`
-	PortsVariable         types.String `tfsdk:"ports_variable"`
-	DataIpv4PrefixListIds types.Set    `tfsdk:"data_ipv4_prefix_list_ids"`
-	DataIpv6PrefixListIds types.Set    `tfsdk:"data_ipv6_prefix_list_ids"`
-	FqdnListIds           types.Set    `tfsdk:"fqdn_list_ids"`
-	GeoLocationListIds    types.Set    `tfsdk:"geo_location_list_ids"`
-	PortListIds           types.Set    `tfsdk:"port_list_ids"`
+	DataIpv4Prefixes         types.Set    `tfsdk:"data_ipv4_prefixes"`
+	DataIpv4PrefixesVariable types.String `tfsdk:"data_ipv4_prefixes_variable"`
+	DataIpv6Prefixes         types.Set    `tfsdk:"data_ipv6_prefixes"`
+	DataIpv6PrefixesVariable types.String `tfsdk:"data_ipv6_prefixes_variable"`
+	Fqdns                    types.Set    `tfsdk:"fqdns"`
+	FqdnsVariable            types.String `tfsdk:"fqdns_variable"`
+	GeoLocations             types.Set    `tfsdk:"geo_locations"`
+	Ports                    types.Set    `tfsdk:"ports"`
+	PortsVariable            types.String `tfsdk:"ports_variable"`
+	DataIpv4PrefixListIds    types.Set    `tfsdk:"data_ipv4_prefix_list_ids"`
+	DataIpv6PrefixListIds    types.Set    `tfsdk:"data_ipv6_prefix_list_ids"`
+	FqdnListIds              types.Set    `tfsdk:"fqdn_list_ids"`
+	GeoLocationListIds       types.Set    `tfsdk:"geo_location_list_ids"`
+	PortListIds              types.Set    `tfsdk:"port_list_ids"`
 }
 
 // End of section. //template:end types
@@ -92,30 +92,30 @@ func (data PolicyObjectSecurityObjectGroup) toBody(ctx context.Context) string {
 		for _, item := range data.Entries {
 			itemBody := ""
 
-			if !item.Ipv4PrefixesVariable.IsNull() {
+			if !item.DataIpv4PrefixesVariable.IsNull() {
 				if true {
 					itemBody, _ = sjson.Set(itemBody, "dataPrefix.ipv4Value.optionType", "variable")
-					itemBody, _ = sjson.Set(itemBody, "dataPrefix.ipv4Value.value", item.Ipv4PrefixesVariable.ValueString())
+					itemBody, _ = sjson.Set(itemBody, "dataPrefix.ipv4Value.value", item.DataIpv4PrefixesVariable.ValueString())
 				}
-			} else if !item.Ipv4Prefixes.IsNull() {
+			} else if !item.DataIpv4Prefixes.IsNull() {
 				if true {
 					itemBody, _ = sjson.Set(itemBody, "dataPrefix.ipv4Value.optionType", "global")
 					var values []string
-					item.Ipv4Prefixes.ElementsAs(ctx, &values, false)
+					item.DataIpv4Prefixes.ElementsAs(ctx, &values, false)
 					itemBody, _ = sjson.Set(itemBody, "dataPrefix.ipv4Value.value", values)
 				}
 			}
 
-			if !item.Ipv6PrefixesVariable.IsNull() {
+			if !item.DataIpv6PrefixesVariable.IsNull() {
 				if true {
 					itemBody, _ = sjson.Set(itemBody, "dataPrefixIpv6.ipv6Value.optionType", "variable")
-					itemBody, _ = sjson.Set(itemBody, "dataPrefixIpv6.ipv6Value.value", item.Ipv6PrefixesVariable.ValueString())
+					itemBody, _ = sjson.Set(itemBody, "dataPrefixIpv6.ipv6Value.value", item.DataIpv6PrefixesVariable.ValueString())
 				}
-			} else if !item.Ipv6Prefixes.IsNull() {
+			} else if !item.DataIpv6Prefixes.IsNull() {
 				if true {
 					itemBody, _ = sjson.Set(itemBody, "dataPrefixIpv6.ipv6Value.optionType", "global")
 					var values []string
-					item.Ipv6Prefixes.ElementsAs(ctx, &values, false)
+					item.DataIpv6Prefixes.ElementsAs(ctx, &values, false)
 					itemBody, _ = sjson.Set(itemBody, "dataPrefixIpv6.ipv6Value.value", values)
 				}
 			}
@@ -225,24 +225,24 @@ func (data *PolicyObjectSecurityObjectGroup) fromBody(ctx context.Context, res g
 		data.Entries = make([]PolicyObjectSecurityObjectGroupEntries, 0)
 		value.ForEach(func(k, v gjson.Result) bool {
 			item := PolicyObjectSecurityObjectGroupEntries{}
-			item.Ipv4Prefixes = types.SetNull(types.StringType)
-			item.Ipv4PrefixesVariable = types.StringNull()
+			item.DataIpv4Prefixes = types.SetNull(types.StringType)
+			item.DataIpv4PrefixesVariable = types.StringNull()
 			if t := v.Get("dataPrefix.ipv4Value.optionType"); t.Exists() {
 				va := v.Get("dataPrefix.ipv4Value.value")
 				if t.String() == "variable" {
-					item.Ipv4PrefixesVariable = types.StringValue(va.String())
+					item.DataIpv4PrefixesVariable = types.StringValue(va.String())
 				} else if t.String() == "global" {
-					item.Ipv4Prefixes = helpers.GetStringSet(va.Array())
+					item.DataIpv4Prefixes = helpers.GetStringSet(va.Array())
 				}
 			}
-			item.Ipv6Prefixes = types.SetNull(types.StringType)
-			item.Ipv6PrefixesVariable = types.StringNull()
+			item.DataIpv6Prefixes = types.SetNull(types.StringType)
+			item.DataIpv6PrefixesVariable = types.StringNull()
 			if t := v.Get("dataPrefixIpv6.ipv6Value.optionType"); t.Exists() {
 				va := v.Get("dataPrefixIpv6.ipv6Value.value")
 				if t.String() == "variable" {
-					item.Ipv6PrefixesVariable = types.StringValue(va.String())
+					item.DataIpv6PrefixesVariable = types.StringValue(va.String())
 				} else if t.String() == "global" {
-					item.Ipv6Prefixes = helpers.GetStringSet(va.Array())
+					item.DataIpv6Prefixes = helpers.GetStringSet(va.Array())
 				}
 			}
 			item.Fqdns = types.SetNull(types.StringType)
@@ -329,12 +329,12 @@ func (data *PolicyObjectSecurityObjectGroup) fromBody(ctx context.Context, res g
 				}
 				keyMatch := true
 				if keyMatch {
-					if helpers.GetStringFromSet(oldItem.Ipv4Prefixes).ValueString() != helpers.GetStringFromSet(data.Entries[ni].Ipv4Prefixes).ValueString() {
+					if helpers.GetStringFromSet(oldItem.DataIpv4Prefixes).ValueString() != helpers.GetStringFromSet(data.Entries[ni].DataIpv4Prefixes).ValueString() {
 						keyMatch = false
 					}
 				}
 				if keyMatch {
-					if helpers.GetStringFromSet(oldItem.Ipv6Prefixes).ValueString() != helpers.GetStringFromSet(data.Entries[ni].Ipv6Prefixes).ValueString() {
+					if helpers.GetStringFromSet(oldItem.DataIpv6Prefixes).ValueString() != helpers.GetStringFromSet(data.Entries[ni].DataIpv6Prefixes).ValueString() {
 						keyMatch = false
 					}
 				}

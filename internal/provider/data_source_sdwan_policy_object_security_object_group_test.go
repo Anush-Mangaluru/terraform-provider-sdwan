@@ -74,7 +74,7 @@ func testAccDataSourceSdwanPolicyObjectSecurityObjectGroupProfileParcelConfig() 
 	config += `	feature_profile_id = sdwan_policy_object_feature_profile.test.id` + "\n"
 	config += `	sequence_ip_type = "ipv4"` + "\n"
 	config += `	entries = [{` + "\n"
-	config += `	  ipv4_prefixes = ["10.1.1.0/24"]` + "\n"
+	config += `	  data_ipv4_prefixes = ["10.1.1.0/24"]` + "\n"
 	config += `	}]` + "\n"
 	config += `}` + "\n"
 
@@ -97,7 +97,7 @@ func testAccDataSourceSdwanPolicyObjectSecurityObjectGroupProfileParcelByNameCon
 	config += `	feature_profile_id = sdwan_policy_object_feature_profile.test.id` + "\n"
 	config += `	sequence_ip_type = "ipv4"` + "\n"
 	config += `	entries = [{` + "\n"
-	config += `	  ipv4_prefixes = ["10.1.1.0/24"]` + "\n"
+	config += `	  data_ipv4_prefixes = ["10.1.1.0/24"]` + "\n"
 	config += `	}]` + "\n"
 	config += `}` + "\n"
 

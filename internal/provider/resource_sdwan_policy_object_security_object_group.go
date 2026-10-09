@@ -100,21 +100,21 @@ func (r *PolicyObjectSecurityObjectGroupProfileParcelResource) Schema(ctx contex
 				Required:            true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
-						"ipv4_prefixes": schema.SetAttribute{
+						"data_ipv4_prefixes": schema.SetAttribute{
 							MarkdownDescription: helpers.NewAttributeDescription("").String,
 							ElementType:         types.StringType,
 							Optional:            true,
 						},
-						"ipv4_prefixes_variable": schema.StringAttribute{
+						"data_ipv4_prefixes_variable": schema.StringAttribute{
 							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
 							Optional:            true,
 						},
-						"ipv6_prefixes": schema.SetAttribute{
+						"data_ipv6_prefixes": schema.SetAttribute{
 							MarkdownDescription: helpers.NewAttributeDescription("").String,
 							ElementType:         types.StringType,
 							Optional:            true,
 						},
-						"ipv6_prefixes_variable": schema.StringAttribute{
+						"data_ipv6_prefixes_variable": schema.StringAttribute{
 							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
 							Optional:            true,
 						},

@@ -5,7 +5,7 @@ resource "sdwan_policy_object_security_object_group" "example" {
   sequence_ip_type   = "ipv4"
   entries = [
     {
-      ipv4_prefixes = ["10.1.1.0/24"]
+      data_ipv4_prefixes = ["10.1.1.0/24"]
     }
   ]
 }

@@ -21,11 +21,11 @@ attributes:
     mandatory: true
     attributes:
       - model_name: ipv4Value
-        tf_name: ipv4_prefixes
+        tf_name: data_ipv4_prefixes
         data_path: [dataPrefix]
         example: 10.1.1.0/24
       - model_name: ipv6Value
-        tf_name: ipv6_prefixes
+        tf_name: data_ipv6_prefixes
         data_path: [dataPrefixIpv6]
         exclude_test: true
         example: 2001:db8::/32

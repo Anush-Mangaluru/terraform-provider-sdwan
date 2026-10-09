@@ -94,21 +94,21 @@ func (d *PolicyObjectSecurityObjectGroupProfileParcelDataSource) Schema(ctx cont
 				Computed:            true,
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
-						"ipv4_prefixes": schema.SetAttribute{
+						"data_ipv4_prefixes": schema.SetAttribute{
 							MarkdownDescription: "",
 							ElementType:         types.StringType,
 							Computed:            true,
 						},
-						"ipv4_prefixes_variable": schema.StringAttribute{
+						"data_ipv4_prefixes_variable": schema.StringAttribute{
 							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
 							Computed:            true,
 						},
-						"ipv6_prefixes": schema.SetAttribute{
+						"data_ipv6_prefixes": schema.SetAttribute{
 							MarkdownDescription: "",
 							ElementType:         types.StringType,
 							Computed:            true,
 						},
-						"ipv6_prefixes_variable": schema.StringAttribute{
+						"data_ipv6_prefixes_variable": schema.StringAttribute{
 							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
 							Computed:            true,
 						},

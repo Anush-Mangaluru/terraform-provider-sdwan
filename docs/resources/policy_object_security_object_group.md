@@ -22,7 +22,7 @@ resource "sdwan_policy_object_security_object_group" "example" {
   sequence_ip_type   = "ipv4"
   entries = [
     {
-      ipv4_prefixes = ["10.1.1.0/24"]
+      data_ipv4_prefixes = ["10.1.1.0/24"]
     }
   ]
 }
@@ -54,16 +54,16 @@ resource "sdwan_policy_object_security_object_group" "example" {
 Optional:
 
 - `data_ipv4_prefix_list_ids` (Set of String)
+- `data_ipv4_prefixes` (Set of String)
+- `data_ipv4_prefixes_variable` (String) Variable name
 - `data_ipv6_prefix_list_ids` (Set of String)
+- `data_ipv6_prefixes` (Set of String)
+- `data_ipv6_prefixes_variable` (String) Variable name
 - `fqdn_list_ids` (Set of String)
 - `fqdns` (Set of String)
 - `fqdns_variable` (String) Variable name
 - `geo_location_list_ids` (Set of String)
 - `geo_locations` (Set of String)
-- `ipv4_prefixes` (Set of String)
-- `ipv4_prefixes_variable` (String) Variable name
-- `ipv6_prefixes` (Set of String)
-- `ipv6_prefixes_variable` (String) Variable name
 - `port_list_ids` (Set of String)
 - `ports` (Set of String)
 - `ports_variable` (String) Variable name
