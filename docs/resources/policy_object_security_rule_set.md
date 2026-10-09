@@ -63,7 +63,8 @@ Optional:
 - `destination_fqdns` (Set of String)
 - `destination_fqdns_variable` (String) Variable name
 - `destination_geo_location_list_ids` (Set of String)
-- `destination_geo_locations` (Set of String)
+- `destination_geo_locations` (Set of String) Source Geolocation
+- `destination_geo_locations_variable` (String) Variable name
 - `destination_ipv4_prefixes` (Set of String)
 - `destination_ipv4_prefixes_variable` (String) Variable name
 - `destination_ipv6_prefixes` (Set of String)
@@ -85,7 +86,8 @@ Optional:
 - `source_data_ipv4_prefix_list_ids` (Set of String)
 - `source_data_ipv6_prefix_list_ids` (Set of String)
 - `source_geo_location_list_ids` (Set of String)
-- `source_geo_locations` (Set of String)
+- `source_geo_locations` (Set of String) Source Geolocation
+- `source_geo_locations_variable` (String) Variable name
 - `source_ipv4_prefixes` (Set of String)
 - `source_ipv4_prefixes_variable` (String) Variable name
 - `source_ipv6_prefixes` (Set of String)

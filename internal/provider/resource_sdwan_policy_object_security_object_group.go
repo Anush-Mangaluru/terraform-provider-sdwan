@@ -132,6 +132,10 @@ func (r *PolicyObjectSecurityObjectGroupProfileParcelResource) Schema(ctx contex
 							ElementType:         types.StringType,
 							Optional:            true,
 						},
+						"geo_locations_variable": schema.StringAttribute{
+							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
+							Optional:            true,
+						},
 						"ports": schema.SetAttribute{
 							MarkdownDescription: helpers.NewAttributeDescription("").String,
 							ElementType:         types.StringType,

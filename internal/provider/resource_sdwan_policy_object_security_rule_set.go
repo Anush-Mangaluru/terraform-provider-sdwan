@@ -180,13 +180,21 @@ func (r *PolicyObjectSecurityRuleSetProfileParcelResource) Schema(ctx context.Co
 							Optional:            true,
 						},
 						"source_geo_locations": schema.SetAttribute{
-							MarkdownDescription: helpers.NewAttributeDescription("").String,
+							MarkdownDescription: helpers.NewAttributeDescription("Source Geolocation").String,
 							ElementType:         types.StringType,
 							Optional:            true,
 						},
+						"source_geo_locations_variable": schema.StringAttribute{
+							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
+							Optional:            true,
+						},
 						"destination_geo_locations": schema.SetAttribute{
-							MarkdownDescription: helpers.NewAttributeDescription("").String,
+							MarkdownDescription: helpers.NewAttributeDescription("Source Geolocation").String,
 							ElementType:         types.StringType,
+							Optional:            true,
+						},
+						"destination_geo_locations_variable": schema.StringAttribute{
+							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
 							Optional:            true,
 						},
 						"source_ports": schema.SetAttribute{

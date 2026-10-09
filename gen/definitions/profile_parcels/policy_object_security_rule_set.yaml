@@ -59,16 +59,14 @@ attributes:
         element_type: String
         exclude_test: true
         example: cisco.com
-      - model_name: value
+      - model_name: sourceGeoLocation
         tf_name: source_geo_locations
-        data_path: [sourceGeoLocation]
         type: Set
         element_type: String
         exclude_test: true
         example: EU
-      - model_name: value
+      - model_name: destinationGeoLocation
         tf_name: destination_geo_locations
-        data_path: [destinationGeoLocation]
         type: Set
         element_type: String
         exclude_test: true

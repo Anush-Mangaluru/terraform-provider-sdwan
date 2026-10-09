@@ -54,6 +54,7 @@ Read-Only:
 - `fqdns_variable` (String) Variable name
 - `geo_location_list_ids` (Set of String)
 - `geo_locations` (Set of String)
+- `geo_locations_variable` (String) Variable name
 - `port_list_ids` (Set of String)
 - `ports` (Set of String)
 - `ports_variable` (String) Variable name

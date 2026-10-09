@@ -50,6 +50,7 @@ type PolicyObjectSecurityObjectGroupEntries struct {
 	Fqdns                    types.Set    `tfsdk:"fqdns"`
 	FqdnsVariable            types.String `tfsdk:"fqdns_variable"`
 	GeoLocations             types.Set    `tfsdk:"geo_locations"`
+	GeoLocationsVariable     types.String `tfsdk:"geo_locations_variable"`
 	Ports                    types.Set    `tfsdk:"ports"`
 	PortsVariable            types.String `tfsdk:"ports_variable"`
 	DataIpv4PrefixListIds    types.Set    `tfsdk:"data_ipv4_prefix_list_ids"`
@@ -133,12 +134,18 @@ func (data PolicyObjectSecurityObjectGroup) toBody(ctx context.Context) string {
 					itemBody, _ = sjson.Set(itemBody, "fqdn.fqdnValue.value", values)
 				}
 			}
-			if !item.GeoLocations.IsNull() {
+
+			if !item.GeoLocationsVariable.IsNull() {
 				if true {
-					itemBody, _ = sjson.Set(itemBody, "geoLocation.value.optionType", "global")
+					itemBody, _ = sjson.Set(itemBody, "geoLocation.optionType", "variable")
+					itemBody, _ = sjson.Set(itemBody, "geoLocation.value", item.GeoLocationsVariable.ValueString())
+				}
+			} else if !item.GeoLocations.IsNull() {
+				if true {
+					itemBody, _ = sjson.Set(itemBody, "geoLocation.optionType", "global")
 					var values []string
 					item.GeoLocations.ElementsAs(ctx, &values, false)
-					itemBody, _ = sjson.Set(itemBody, "geoLocation.value.value", values)
+					itemBody, _ = sjson.Set(itemBody, "geoLocation.value", values)
 				}
 			}
 
@@ -256,10 +263,12 @@ func (data *PolicyObjectSecurityObjectGroup) fromBody(ctx context.Context, res g
 				}
 			}
 			item.GeoLocations = types.SetNull(types.StringType)
-
-			if t := v.Get("geoLocation.value.optionType"); t.Exists() {
-				va := v.Get("geoLocation.value.value")
-				if t.String() == "global" {
+			item.GeoLocationsVariable = types.StringNull()
+			if t := v.Get("geoLocation.optionType"); t.Exists() {
+				va := v.Get("geoLocation.value")
+				if t.String() == "variable" {
+					item.GeoLocationsVariable = types.StringValue(va.String())
+				} else if t.String() == "global" {
 					item.GeoLocations = helpers.GetStringSet(va.Array())
 				}
 			}

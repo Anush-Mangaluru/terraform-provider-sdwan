@@ -60,7 +60,9 @@ type PolicyObjectSecurityRuleSetSequences struct {
 	DestinationFqdns                 types.Set    `tfsdk:"destination_fqdns"`
 	DestinationFqdnsVariable         types.String `tfsdk:"destination_fqdns_variable"`
 	SourceGeoLocations               types.Set    `tfsdk:"source_geo_locations"`
+	SourceGeoLocationsVariable       types.String `tfsdk:"source_geo_locations_variable"`
 	DestinationGeoLocations          types.Set    `tfsdk:"destination_geo_locations"`
+	DestinationGeoLocationsVariable  types.String `tfsdk:"destination_geo_locations_variable"`
 	SourcePorts                      types.Set    `tfsdk:"source_ports"`
 	SourcePortsVariable              types.String `tfsdk:"source_ports_variable"`
 	DestinationPorts                 types.Set    `tfsdk:"destination_ports"`
@@ -220,20 +222,32 @@ func (data PolicyObjectSecurityRuleSet) toBody(ctx context.Context) string {
 					itemBody, _ = sjson.Set(itemBody, "destinationFqdn.fqdnValue.value", values)
 				}
 			}
-			if !item.SourceGeoLocations.IsNull() {
+
+			if !item.SourceGeoLocationsVariable.IsNull() {
 				if true {
-					itemBody, _ = sjson.Set(itemBody, "sourceGeoLocation.value.optionType", "global")
+					itemBody, _ = sjson.Set(itemBody, "sourceGeoLocation.optionType", "variable")
+					itemBody, _ = sjson.Set(itemBody, "sourceGeoLocation.value", item.SourceGeoLocationsVariable.ValueString())
+				}
+			} else if !item.SourceGeoLocations.IsNull() {
+				if true {
+					itemBody, _ = sjson.Set(itemBody, "sourceGeoLocation.optionType", "global")
 					var values []string
 					item.SourceGeoLocations.ElementsAs(ctx, &values, false)
-					itemBody, _ = sjson.Set(itemBody, "sourceGeoLocation.value.value", values)
+					itemBody, _ = sjson.Set(itemBody, "sourceGeoLocation.value", values)
 				}
 			}
-			if !item.DestinationGeoLocations.IsNull() {
+
+			if !item.DestinationGeoLocationsVariable.IsNull() {
 				if true {
-					itemBody, _ = sjson.Set(itemBody, "destinationGeoLocation.value.optionType", "global")
+					itemBody, _ = sjson.Set(itemBody, "destinationGeoLocation.optionType", "variable")
+					itemBody, _ = sjson.Set(itemBody, "destinationGeoLocation.value", item.DestinationGeoLocationsVariable.ValueString())
+				}
+			} else if !item.DestinationGeoLocations.IsNull() {
+				if true {
+					itemBody, _ = sjson.Set(itemBody, "destinationGeoLocation.optionType", "global")
 					var values []string
 					item.DestinationGeoLocations.ElementsAs(ctx, &values, false)
-					itemBody, _ = sjson.Set(itemBody, "destinationGeoLocation.value.value", values)
+					itemBody, _ = sjson.Set(itemBody, "destinationGeoLocation.value", values)
 				}
 			}
 
@@ -493,18 +507,22 @@ func (data *PolicyObjectSecurityRuleSet) fromBody(ctx context.Context, res gjson
 				}
 			}
 			item.SourceGeoLocations = types.SetNull(types.StringType)
-
-			if t := v.Get("sourceGeoLocation.value.optionType"); t.Exists() {
-				va := v.Get("sourceGeoLocation.value.value")
-				if t.String() == "global" {
+			item.SourceGeoLocationsVariable = types.StringNull()
+			if t := v.Get("sourceGeoLocation.optionType"); t.Exists() {
+				va := v.Get("sourceGeoLocation.value")
+				if t.String() == "variable" {
+					item.SourceGeoLocationsVariable = types.StringValue(va.String())
+				} else if t.String() == "global" {
 					item.SourceGeoLocations = helpers.GetStringSet(va.Array())
 				}
 			}
 			item.DestinationGeoLocations = types.SetNull(types.StringType)
-
-			if t := v.Get("destinationGeoLocation.value.optionType"); t.Exists() {
-				va := v.Get("destinationGeoLocation.value.value")
-				if t.String() == "global" {
+			item.DestinationGeoLocationsVariable = types.StringNull()
+			if t := v.Get("destinationGeoLocation.optionType"); t.Exists() {
+				va := v.Get("destinationGeoLocation.value")
+				if t.String() == "variable" {
+					item.DestinationGeoLocationsVariable = types.StringValue(va.String())
+				} else if t.String() == "global" {
 					item.DestinationGeoLocations = helpers.GetStringSet(va.Array())
 				}
 			}

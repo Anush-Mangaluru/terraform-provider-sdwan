@@ -164,13 +164,21 @@ func (d *PolicyObjectSecurityRuleSetProfileParcelDataSource) Schema(ctx context.
 							Computed:            true,
 						},
 						"source_geo_locations": schema.SetAttribute{
-							MarkdownDescription: "",
+							MarkdownDescription: "Source Geolocation",
 							ElementType:         types.StringType,
 							Computed:            true,
 						},
+						"source_geo_locations_variable": schema.StringAttribute{
+							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
+							Computed:            true,
+						},
 						"destination_geo_locations": schema.SetAttribute{
-							MarkdownDescription: "",
+							MarkdownDescription: "Source Geolocation",
 							ElementType:         types.StringType,
+							Computed:            true,
+						},
+						"destination_geo_locations_variable": schema.StringAttribute{
+							MarkdownDescription: helpers.NewAttributeDescription("Variable name").String,
 							Computed:            true,
 						},
 						"source_ports": schema.SetAttribute{

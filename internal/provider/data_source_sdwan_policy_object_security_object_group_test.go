@@ -75,6 +75,8 @@ func testAccDataSourceSdwanPolicyObjectSecurityObjectGroupProfileParcelConfig() 
 	config += `	sequence_ip_type = "ipv4"` + "\n"
 	config += `	entries = [{` + "\n"
 	config += `	  data_ipv4_prefixes = ["10.1.1.0/24"]` + "\n"
+	config += `	  fqdns = ["cisco.com"]` + "\n"
+	config += `	  geo_locations = ["EU"]` + "\n"
 	config += `	}]` + "\n"
 	config += `}` + "\n"
 
@@ -98,6 +100,8 @@ func testAccDataSourceSdwanPolicyObjectSecurityObjectGroupProfileParcelByNameCon
 	config += `	sequence_ip_type = "ipv4"` + "\n"
 	config += `	entries = [{` + "\n"
 	config += `	  data_ipv4_prefixes = ["10.1.1.0/24"]` + "\n"
+	config += `	  fqdns = ["cisco.com"]` + "\n"
+	config += `	  geo_locations = ["EU"]` + "\n"
 	config += `	}]` + "\n"
 	config += `}` + "\n"
 

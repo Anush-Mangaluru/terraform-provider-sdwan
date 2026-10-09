@@ -34,14 +34,11 @@ attributes:
         data_path: [fqdn]
         type: Set
         element_type: String
-        exclude_test: true
         example: cisco.com
-      - model_name: value
+      - model_name: geoLocation
         tf_name: geo_locations
-        data_path: [geoLocation]
         type: Set
         element_type: String
-        exclude_test: true
         example: EU
       - model_name: portValue
         tf_name: ports
